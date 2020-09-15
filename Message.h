@@ -6,17 +6,18 @@
 #define LABORATORIO_DI_PROGRAMMAZIONE_MESSAGE_H
 
 #include <iostream>
+#include "User.h"
 
 class Message {
 public:
-    Message(std::string s, std::string r, std::string t) :
+    Message(User s, User r, std::string t) :
         sender(s), receiver(r), text(t), isRead(false) {}
 
-    const std::string &getSender() const {
+    const User &getSender() const {
         return sender;
     }
 
-    const std::string &getReceiver() const {
+    const User &getReceiver() const {
         return receiver;
     }
 
@@ -33,8 +34,8 @@ public:
     }
 
 private:
-    std::string sender;
-    std::string receiver;
+    User sender;
+    User receiver;
     std::string text;
     bool isRead;
 };
