@@ -16,11 +16,20 @@ class Chat : public Subject {
 public:
     Chat(User u, User ou) : user(u), otherUser(ou) {}
 
+    const User &getUser() const {
+        return user;
+    }
+
+    const User &getOtherUser() const {
+        return otherUser;
+    }
+
     void subscribe(Observer* o) override;
     void unsubscribe(Observer* o) override;
     void notify() override;
 
     void addMessage(const Message& newMsg);
+    void readMessage(Message& msg);
 private:
     std::list<Observer*> observers;
     std::vector<Message> messages;

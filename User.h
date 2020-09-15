@@ -15,7 +15,9 @@ public:
         return name;
     }
 
-    bool operator==(const User& right);
+    bool operator==(const User& right) const;
+    bool operator!=(const User& right) const;
+
 private:
     std::string name;
 };
