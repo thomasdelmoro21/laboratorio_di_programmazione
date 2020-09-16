@@ -12,6 +12,7 @@ public:
     virtual void attach() = 0;
     virtual void detach() = 0;
     virtual void update() = 0;
+    virtual void draw() = 0;
 };
 
 
