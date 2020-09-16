@@ -4,7 +4,6 @@
 
 #include "gtest/gtest.h"
 #include "../Chat.h"
-#include "../User.h"
 
 User emma("Emma");
 User chiara("Chiara");

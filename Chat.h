@@ -9,12 +9,12 @@
 #include <list>
 #include <vector>
 #include "Subject.h"
-#include "Message.h"
 #include "User.h"
+#include "Message.h"
 
 class Chat : public Subject {
 public:
-    Chat(User u, User ou) : user(u), otherUser(ou) {}
+    Chat(User firstUser, User secondUser) : user(firstUser), otherUser(secondUser) {}
 
     const User &getUser() const {
         return user;

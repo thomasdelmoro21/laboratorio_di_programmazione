@@ -11,7 +11,7 @@
 
 class MessageNotifier : public Observer {
 public:
-    MessageNotifier() {
+    MessageNotifier(Chat* subject) : subject(subject) {
         attach();
     }
     ~MessageNotifier() {
@@ -22,6 +22,15 @@ public:
     void detach() override;
     void update() override;
     void draw() override;
+
+    Chat *getSubject() const {
+        return subject;
+    }
+
+    void setSubject(Chat *subject) {
+        MessageNotifier::subject = subject;
+    }
+
 private:
     Chat* subject;
 };
