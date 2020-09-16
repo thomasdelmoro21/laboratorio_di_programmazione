@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "MessageNotifier.h"
-#include "Chat.h"
 
 void MessageNotifier::attach() {
     subject->subscribe(this);
