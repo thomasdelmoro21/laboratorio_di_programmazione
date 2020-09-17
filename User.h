@@ -9,6 +9,7 @@
 #include <memory>
 #include <list>
 
+class Message;
 class Chat;
 class User {
 public:
@@ -27,6 +28,7 @@ public:
     void removeChat(Chat* remChat);
     Chat* findChat(User u) const;
 
+    void readMessage(User u, Message& msg);
 private:
     std::string name;
     std::list<Chat*> chats;

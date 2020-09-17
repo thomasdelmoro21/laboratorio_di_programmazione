@@ -30,8 +30,8 @@ void Chat::readMessage(Message &msg) {
             user && msg.getReceiver() != otherUser)
         throw std::out_of_range("Il messaggio non fa parte di questa chat");
     else {
-        std::cout << "Message from " << msg.getSender().getName() << " to "
-            << msg.getReceiver().getName() << std::endl;
+        std::cout << "Messaggio da " << msg.getSender().getName() << " a "
+            << msg.getReceiver().getName() << ": " << std::endl;
         std::cout << msg.getText() << std::endl;
         msg.setIsRead(true);
     }

@@ -43,3 +43,8 @@ Chat* User::findChat(User u) const {
     }
     throw std::out_of_range("Chat non trovata");
 }
+
+void User::readMessage(User u, Message& msg) {
+    Chat* msgChat = findChat(u);
+    msgChat->readMessage(msg);
+}
