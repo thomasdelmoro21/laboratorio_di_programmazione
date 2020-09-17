@@ -4,8 +4,27 @@
 
 #include "gtest/gtest.h"
 #include "../User.h"
+#include "../Chat.h"
 
 TEST(User, constructor) {
-    User testUser("Mario");
-    ASSERT_EQ(testUser.getName(), "Mario" );
+    User mario("Mario");
+    ASSERT_EQ(mario.getName(), "Mario" );
+}
+
+TEST(User, chatMethods) {
+    User carlo("Carlo");
+    User maria("Maria");
+    User claudio("Claudio");
+    User andrea("Andrea");
+    carlo.createChat(maria);
+    carlo.createChat(claudio);
+    ASSERT_EQ(carlo.findChat(claudio)->getOtherUser(), claudio);
+    ASSERT_EQ(carlo.findChat(maria)->getOtherUser(), maria);
+    ASSERT_THROW(carlo.findChat(andrea), std::out_of_range);
+    carlo.deleteChat(maria);
+    ASSERT_THROW(carlo.findChat(maria), std::out_of_range);
+    Chat cc(carlo, claudio);
+    Chat* ptrCC = &cc;
+    carlo.removeChat(ptrCC);
+    ASSERT_THROW(carlo.findChat(claudio), std::out_of_range);
 }
