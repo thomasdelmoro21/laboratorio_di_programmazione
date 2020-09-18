@@ -21,8 +21,9 @@ void Chat::addMessage(const Message &newMsg) {
         messages.push_back(newMsg);
     else
         throw std::logic_error("Il messaggio non appartiene a questa chat");
-    if (user == newMsg.getReceiver())
+    if (user == newMsg.getReceiver()) {
         notify();
+    }
 }
 
 void Chat::readMessage(Message &msg) {
@@ -35,4 +36,13 @@ void Chat::readMessage(Message &msg) {
         std::cout << msg.getText() << std::endl;
         msg.setIsRead(true);
     }
+}
+
+int Chat::getUnreadMessages() const {
+    int unreadMessages = 0;
+    for (auto i : messages) {
+        if (user == i.getReceiver() && !i.getIsRead())
+            unreadMessages++;
+    }
+    return unreadMessages;
 }

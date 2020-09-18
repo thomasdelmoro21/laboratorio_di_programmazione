@@ -5,13 +5,14 @@
 #ifndef LABORATORIO_DI_PROGRAMMAZIONE_MESSAGENOTIFIER_H
 #define LABORATORIO_DI_PROGRAMMAZIONE_MESSAGENOTIFIER_H
 
+#include <memory>
 #include "Observer.h"
 #include "Subject.h"
 #include "Chat.h"
 
 class MessageNotifier : public Observer {
 public:
-    MessageNotifier(Chat* subject) : subject(subject) {
+    MessageNotifier(std::shared_ptr<Chat> subject) : subject(subject) {
         attach();
     }
     ~MessageNotifier() {
@@ -23,16 +24,16 @@ public:
     void update() override;
     void draw() override;
 
-    Chat *getSubject() const {
+    std::shared_ptr<Chat> getSubject() const {
         return subject;
     }
 
-    void setSubject(Chat *subject) {
+    void setSubject(std::shared_ptr<Chat> subject) {
         MessageNotifier::subject = subject;
     }
 
 private:
-    Chat* subject;
+    std::shared_ptr<Chat> subject;
 };
 
 

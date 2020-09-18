@@ -49,3 +49,23 @@ void User::readMessage(User u, Message& msg) {
     std::shared_ptr<Chat> msgChat = findChat(u);
     msgChat->readMessage(msg);
 }
+
+void User::subscribe(Observer *o) {
+    observers.push_back(o);
+}
+
+void User::unsubscribe(Observer *o) {
+    observers.remove(o);
+}
+
+void User::notify() {
+    for (auto i : observers)
+        i->update();
+}
+
+int User::getUnreadMessages() {
+    int unreadMessages = 0;
+    for (auto i : chats)
+        unreadMessages += i->getUnreadMessages();
+    return unreadMessages;
+}

@@ -17,5 +17,6 @@ void UnreadMessageNotifier::update() {
 }
 
 void UnreadMessageNotifier::draw() {
-
+    int unreadMessages = subject->getUnreadMessages();
+    std::cout << subject->getName() << ": Hai " << unreadMessages << " messaggi non letti" << std::endl;
 }

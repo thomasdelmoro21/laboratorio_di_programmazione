@@ -6,11 +6,11 @@
 #define LABORATORIO_DI_PROGRAMMAZIONE_UNREADMESSAGENOTIFIER_H
 
 #include "Observer.h"
-#include "Chat.h"
+#include "User.h"
 
 class UnreadMessageNotifier : public Observer {
 public:
-    UnreadMessageNotifier(Chat* subject) : subject(subject) {
+    UnreadMessageNotifier(User* subject) : subject(subject) {
         attach();
     }
 
@@ -23,7 +23,7 @@ public:
     void update() override;
     void draw() override;
 private:
-    Chat* subject;
+    User* subject;
 };
 
 

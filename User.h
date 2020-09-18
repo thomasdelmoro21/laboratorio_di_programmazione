@@ -8,10 +8,11 @@
 #include <iostream>
 #include <memory>
 #include <list>
+#include "Subject.h"
 
 class Message;
 class Chat;
-class User {
+class User : public Subject {
 public:
     explicit User(std::string name) : name(name) {}
 
@@ -22,6 +23,10 @@ public:
     bool operator==(const User& right) const;
     bool operator!=(const User& right) const;
 
+    void subscribe(Observer* o) override;
+    void unsubscribe(Observer* o) override;
+    void notify() override;
+
     void createChat(User u);
     void addChat(std::shared_ptr<Chat> newChat);
     void deleteChat(User u);
@@ -29,9 +34,11 @@ public:
     std::shared_ptr<Chat> findChat(User u) const;
 
     void readMessage(User u, Message& msg);
+    int getUnreadMessages();
 private:
     std::string name;
     std::list<std::shared_ptr<Chat>> chats;
+    std::list<Observer*> observers;
 };
 
 

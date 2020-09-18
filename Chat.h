@@ -30,6 +30,8 @@ public:
 
     void addMessage(const Message& newMsg);
     void readMessage(Message& msg);
+
+    int getUnreadMessages() const;
 private:
     std::list<Observer*> observers;
     std::vector<Message> messages;
