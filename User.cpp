@@ -20,11 +20,12 @@ bool User::operator!=(const User &right) const {
 }
 
 void User::createChat(User u) {
-    Chat* newChat = new Chat(*this, u);
+    Chat* c = new Chat(*this, u);
+    std::shared_ptr<Chat> newChat = std::make_shared<Chat>(*c);
     this->addChat(newChat);
 }
 
-void User::addChat(Chat *newChat) {
+void User::addChat(std::shared_ptr<Chat> newChat) {
     chats.push_back(newChat);
 }
 
@@ -32,11 +33,11 @@ void User::deleteChat(User u) {
     chats.remove(findChat(u));
 }
 
-void User::removeChat(Chat *remChat) {
+void User::removeChat(std::shared_ptr<Chat> remChat) {
     deleteChat(remChat->getOtherUser());
 }
 
-Chat* User::findChat(User u) const {
+std::shared_ptr<Chat> User::findChat(User u) const {
     for (auto i : chats) {
         if (i->getOtherUser() == u)
             return i;
@@ -45,6 +46,6 @@ Chat* User::findChat(User u) const {
 }
 
 void User::readMessage(User u, Message& msg) {
-    Chat* msgChat = findChat(u);
+    std::shared_ptr<Chat> msgChat = findChat(u);
     msgChat->readMessage(msg);
 }

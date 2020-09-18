@@ -23,15 +23,15 @@ public:
     bool operator!=(const User& right) const;
 
     void createChat(User u);
-    void addChat(Chat* newChat);
+    void addChat(std::shared_ptr<Chat> newChat);
     void deleteChat(User u);
-    void removeChat(Chat* remChat);
-    Chat* findChat(User u) const;
+    void removeChat(std::shared_ptr<Chat> remChat);
+    std::shared_ptr<Chat> findChat(User u) const;
 
     void readMessage(User u, Message& msg);
 private:
     std::string name;
-    std::list<Chat*> chats;
+    std::list<std::shared_ptr<Chat>> chats;
 };
 
 
