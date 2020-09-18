@@ -27,6 +27,7 @@ void User::createChat(User u) {
 
 void User::addChat(std::shared_ptr<Chat> newChat) {
     chats.push_back(newChat);
+    notify();
 }
 
 void User::deleteChat(User u) {

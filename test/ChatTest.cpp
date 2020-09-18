@@ -28,3 +28,15 @@ TEST(Chat, readMessage) {
     Message errMsg(renzo, chiara, "ciao");
     ASSERT_THROW(c.readMessage(errMsg), std::logic_error);
 }
+TEST(Chat, getUnreadMessages) {
+    Chat c(emma, chiara);
+    Message msg1(chiara, emma, "ciao");
+    Message msg2(chiara, emma, "Come stai?");
+    Message msg3(emma, chiara, "bene");
+    Message msg4(chiara, emma, "anche io");
+    c.addMessage(msg1);
+    c.addMessage(msg2);
+    c.addMessage(msg3);
+    c.addMessage(msg4);
+    ASSERT_EQ(c.getUnreadMessages(), 3);
+}

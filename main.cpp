@@ -3,24 +3,37 @@
 #include "Chat.h"
 #include "Message.h"
 #include "MessageNotifier.h"
+#include "UnreadMessageNotifier.h"
 
 int main() {
     User antonio("Antonio");
     User gianni("Gianni");
     User paola("Paola");
-    antonio.createChat(gianni);
-    gianni.createChat(antonio);
-    antonio.createChat(paola);
-    paola.createChat(antonio);
+    User* ptrA = &antonio;
+    User* ptrG = &gianni;
+    User* ptrP = &paola;
     Chat ag(antonio, gianni);
     Chat ap(antonio, paola);
-    Chat* ptrAG = &ag;
-    Chat* ptrAP = &ap;
+    std::shared_ptr<Chat> ptrAG = std::make_shared<Chat>(ag);
+    std::shared_ptr<Chat> ptrAP = std::make_shared<Chat>(ap);
+
     MessageNotifier notifierAG(ptrAG);
     MessageNotifier notifierAP(ptrAP);
+    UnreadMessageNotifier unreadA(ptrA);
+    UnreadMessageNotifier unreadG(ptrG);
+    UnreadMessageNotifier unreadP(ptrP);
+
     Message msg1(antonio, gianni, "ciao");
-    Message msg2(paola, antonio, "come stai");
-    ag.addMessage(msg1);  //nessuna notifica
-    ap.addMessage(msg2);  //notifica da Paola
-    antonio.readMessage(paola, msg2);
+    Message msg2(paola, antonio, "come stai?");
+    Message msg3(paola, antonio, "spero bene");
+    Message msg4(gianni, antonio, "buonasera");
+
+    ptrAG->addMessage(msg1);  //nessuna notifica
+    ptrAP->addMessage(msg2);  //notifica da Paola
+    ptrAP->addMessage(msg3);  //notifica da Paola
+    ptrAG->addMessage(msg4);  //notifica da Gianni
+
+    antonio.addChat(ptrAG);
+    antonio.addChat(ptrAP);
+
 }

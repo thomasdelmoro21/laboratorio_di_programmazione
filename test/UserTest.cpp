@@ -24,7 +24,7 @@ TEST(User, chatMethods) {
     carlo.deleteChat(maria);
     ASSERT_THROW(carlo.findChat(maria), std::logic_error);
     Chat cc(carlo, claudio);
-    Chat* ptrCC = &cc;
+    std::shared_ptr<Chat> ptrCC = std::make_shared<Chat>(cc);
     carlo.removeChat(ptrCC);
     ASSERT_THROW(carlo.findChat(claudio), std::logic_error);
 }
