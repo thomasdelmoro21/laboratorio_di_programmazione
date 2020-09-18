@@ -21,10 +21,10 @@ TEST(Chat, addMessage) {
     ASSERT_EQ(m.getSender().getName(), c.getUser().getName());
     ASSERT_EQ(m.getReceiver().getName(), c.getOtherUser().getName());
     Message errMsg(renzo, chiara, "come stai");
-    ASSERT_THROW(c.addMessage(errMsg), std::out_of_range);
+    ASSERT_THROW(c.addMessage(errMsg), std::logic_error);
 }
 TEST(Chat, readMessage) {
     Chat c(emma, chiara);
     Message errMsg(renzo, chiara, "ciao");
-    ASSERT_THROW(c.readMessage(errMsg), std::out_of_range);
+    ASSERT_THROW(c.readMessage(errMsg), std::logic_error);
 }

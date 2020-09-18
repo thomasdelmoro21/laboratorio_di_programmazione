@@ -41,7 +41,7 @@ Chat* User::findChat(User u) const {
         if (i->getOtherUser() == u)
             return i;
     }
-    throw std::out_of_range("Chat non trovata");
+    throw std::logic_error("Chat non trovata");
 }
 
 void User::readMessage(User u, Message& msg) {

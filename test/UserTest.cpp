@@ -20,11 +20,11 @@ TEST(User, chatMethods) {
     carlo.createChat(claudio);
     ASSERT_EQ(carlo.findChat(claudio)->getOtherUser(), claudio);
     ASSERT_EQ(carlo.findChat(maria)->getOtherUser(), maria);
-    ASSERT_THROW(carlo.findChat(andrea), std::out_of_range);
+    ASSERT_THROW(carlo.findChat(andrea), std::logic_error);
     carlo.deleteChat(maria);
-    ASSERT_THROW(carlo.findChat(maria), std::out_of_range);
+    ASSERT_THROW(carlo.findChat(maria), std::logic_error);
     Chat cc(carlo, claudio);
     Chat* ptrCC = &cc;
     carlo.removeChat(ptrCC);
-    ASSERT_THROW(carlo.findChat(claudio), std::out_of_range);
+    ASSERT_THROW(carlo.findChat(claudio), std::logic_error);
 }

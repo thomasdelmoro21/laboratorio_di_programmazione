@@ -20,7 +20,7 @@ void Chat::addMessage(const Message &newMsg) {
        (user==newMsg.getReceiver() && otherUser==newMsg.getSender()))
         messages.push_back(newMsg);
     else
-        throw std::out_of_range("Il messaggio non appartiene a questa chat");
+        throw std::logic_error("Il messaggio non appartiene a questa chat");
     if (user == newMsg.getReceiver())
         notify();
 }
@@ -28,7 +28,7 @@ void Chat::addMessage(const Message &newMsg) {
 void Chat::readMessage(Message &msg) {
     if((msg.getSender() != user && msg.getSender()!= otherUser) || msg.getReceiver()!=
             user && msg.getReceiver() != otherUser)
-        throw std::out_of_range("Il messaggio non fa parte di questa chat");
+        throw std::logic_error("Il messaggio non fa parte di questa chat");
     else {
         std::cout << "Messaggio da " << msg.getSender().getName() << " a "
             << msg.getReceiver().getName() << ": " << std::endl;
