@@ -20,8 +20,7 @@ bool User::operator!=(const User &right) const {
 }
 
 void User::createChat(User u) {
-    Chat* c = new Chat(*this, u);
-    std::shared_ptr<Chat> newChat = std::make_shared<Chat>(*c);
+    std::shared_ptr<Chat> newChat = std::make_shared<Chat>(*this, u);
     this->addChat(newChat);
 }
 

@@ -12,10 +12,9 @@ int main() {
     User* ptrA = &antonio;
     User* ptrG = &gianni;
     User* ptrP = &paola;
-    Chat ag(antonio, gianni);
-    Chat ap(antonio, paola);
-    std::shared_ptr<Chat> ptrAG = std::make_shared<Chat>(ag);
-    std::shared_ptr<Chat> ptrAP = std::make_shared<Chat>(ap);
+
+    std::shared_ptr<Chat> ptrAG = std::make_shared<Chat>(antonio, gianni);
+    std::shared_ptr<Chat> ptrAP = std::make_shared<Chat>(antonio, paola);
 
     MessageNotifier notifierAG(ptrAG);
     MessageNotifier notifierAP(ptrAP);
